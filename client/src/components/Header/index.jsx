@@ -1,4 +1,64 @@
-import { Link } from 'react-router-dom';
+import { Flex, Box, Heading, Button, useColorModeValue } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import Auth from '../../utils/auth'; 
+
+const Header = () => {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
+  const bgColor = useColorModeValue('black'); 
+  const buttonColorScheme = "yellow"; 
+
+  return (
+    <Flex
+      as="header"
+      bg={bgColor}
+      color="yellow.200"
+      mb={4}
+      p={3}
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+    >
+      <Box>
+        <RouterLink to="/">
+          <Heading as="h1" size="lg">
+            EFT-BALLISTICS
+          </Heading>
+        </RouterLink>
+      </Box>
+
+      <Box>
+        {Auth.loggedIn() ? (
+          <>
+            <Button as={RouterLink} to="/me" colorScheme={buttonColorScheme} mr={2}>
+              View My Profile
+            </Button>
+            <Button onClick={logout} colorScheme="red">
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button as={RouterLink} to="/login" colorScheme={buttonColorScheme} mr={2}>
+              Login
+            </Button>
+            <Button as={RouterLink} to="/signup" colorScheme={buttonColorScheme}>
+              Signup
+            </Button>
+          </>
+        )}
+      </Box>
+    </Flex>
+  );
+};
+
+export default Header;
+
+
+/*import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
@@ -45,3 +105,4 @@ const Header = () => {
 };
 
 export default Header;
+*/
