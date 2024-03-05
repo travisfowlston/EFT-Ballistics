@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
+import ProfileList from '../components/AmmoList';
 
 import { QUERY_PROFILES } from '../utils/queries';
 
