@@ -5,6 +5,7 @@ const ProfileList = ({ profiles, title }) => {
     return <h3>No Profiles Yet</h3>;
   }
 
+  // This is where we will return the AmmoList component from the Tarkov API
   return (
     <div>
       <h3 className="text-primary">{title}</h3>

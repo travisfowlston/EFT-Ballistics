@@ -1,8 +1,9 @@
 import { useMutation } from '@apollo/client';
 
-import { REMOVE_SKILL } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
+
+// Renders everything on the profile page.
 const SkillsList = ({ skills, isLoggedInUser = false }) => {
   const [removeSkill, { error }] = useMutation
   (REMOVE_SKILL, {
