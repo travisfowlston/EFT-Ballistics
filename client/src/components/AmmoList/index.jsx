@@ -1,11 +1,36 @@
 import { Link } from 'react-router-dom';
+import { request, gql } from 'graphql-request'
 
 const ProfileList = ({ profiles, title }) => {
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = gql`
+        query {
+          ammos {
+            id
+            name
+            shortName
+            damage
+          }
+        }`
+      ;
 
+      try {
+        const data = await request('https://api.tarkov.dev/graphql', query);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run the effect only once when the component mounts
   // This is where we will return the AmmoList component from the Tarkov API
+  
+
   return (
     <div>
       <h3 className="text-primary">{title}</h3>
