@@ -20,6 +20,7 @@ const Header = () => {
       align="center"
       justify="space-between"
       wrap="wrap"
+      borderBottom="1px" borderColor="#DBC59C" borderStyle="solid"
     >
       <Box>
         <RouterLink to="/">
@@ -29,6 +30,7 @@ const Header = () => {
             w="300px"
             h="10"
             objectFit="cover"
+            border="1px" borderColor="#DBC59C" borderStyle="solid"
           />
         </RouterLink>
       </Box>
