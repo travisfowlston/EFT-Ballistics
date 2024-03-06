@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
 import {
+  Box,
+  Flex,
   Table,
   Thead,
   Tbody,
@@ -9,6 +11,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Container,
 } from "@chakra-ui/react";
 
 const Home = () => {
@@ -49,37 +52,39 @@ const Home = () => {
 
   return (
     <main>
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption>Ammo Types</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Short Name</Th>
-              <Th>Caliber</Th>
-              <Th>Damage</Th>
-              <Th>Armor Damage</Th>
-              <Th>Fragmentation Chance</Th>
-              <Th>Penetration Chance</Th>
-              <Th>Accuracy Modifier</Th>
-              <Th>Recoil Modifier</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {ammoData.map((ammo) => (
-              <Tr key={ammo.item.id}>
-                <Td>{ammo.item.shortName}</Td>
-                <Td>{ammo.caliber}</Td>
-                <Td>{ammo.damage}</Td>
-                <Td>{ammo.armorDamage}</Td>
-                <Td>{ammo.fragmentationChance}</Td>
-                <Td>{ammo.penetrationChance}</Td>
-                <Td>{ammo.accuracyModifier}</Td>
-                <Td>{ammo.recoilModifier}</Td>
+      <Box>
+        <TableContainer>
+          <Table variant="simple">
+            <TableCaption>Ammo Types</TableCaption>
+            <Thead>
+              <Tr>
+                <Th>Short Name</Th>
+                <Th>Caliber</Th>
+                <Th>Damage</Th>
+                <Th>Armor Damage</Th>
+                <Th>Fragmentation Chance</Th>
+                <Th>Penetration Chance</Th>
+                <Th>Accuracy Modifier</Th>
+                <Th>Recoil Modifier</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
+            </Thead>
+            <Tbody>
+              {ammoData.map((ammo) => (
+                <Tr key={ammo.item.id}>
+                  <Td>{ammo.item.shortName}</Td>
+                  <Td>{ammo.caliber}</Td>
+                  <Td>{ammo.damage}</Td>
+                  <Td>{ammo.armorDamage}</Td>
+                  <Td>{ammo.fragmentationChance}</Td>
+                  <Td>{ammo.penetrationChance}</Td>
+                  <Td>{ammo.accuracyModifier}</Td>
+                  <Td>{ammo.recoilModifier}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </Box>
     </main>
   );
 };
