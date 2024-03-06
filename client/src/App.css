@@ -7,3 +7,7 @@
     transition: transform 0.05s ease;
     color: #DBC59c !important;
   }
+/* Padding required to prevent header from overlapping with content */
+  .container {
+    padding-top: 100px;
+  }
