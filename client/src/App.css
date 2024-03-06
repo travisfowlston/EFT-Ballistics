@@ -1,1 +1,9 @@
 /* styles go here */
+
+/* Footer Section */
+
+  .icon:hover {
+    transform: scale(1.15);
+    transition: transform 0.05s ease;
+    color: #DBC59c !important;
+  }
