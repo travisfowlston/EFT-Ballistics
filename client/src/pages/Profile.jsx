@@ -1,8 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import SkillsList from '../components/SkillsList';
-
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
@@ -46,13 +44,6 @@ const Profile = () => {
         {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
         skills...
       </h2>
-
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
-        />
-      )}
     </div>
   );
 };
