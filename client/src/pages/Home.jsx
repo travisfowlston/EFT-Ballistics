@@ -1,49 +1,85 @@
+import { useEffect, useState } from "react";
+import { request, gql } from "graphql-request";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from "@chakra-ui/react";
 
-import { useEffect } from 'react';
-import { request, gql } from 'graphql-request';
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_PROFILES);
-  // const profiles = data?.profiles || [];
+  const [ammoData, setAmmoData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const query = gql`
         query {
-          ammo{
-            lightBleedModifier
-            armorDamage
-            penetrationPower
+          ammo {
+            item {
+              id
+              shortName
+              name
+            }
             caliber
+            tracer
+            projectileCount
             damage
-            tracerColor
-        }}`
-      ;
-
+            armorDamage
+            fragmentationChance
+            penetrationChance
+            accuracyModifier
+            recoilModifier
+          }
+        }
+      `;
       try {
-        const data = await request('https://api.tarkov.dev/graphql', query);
-        console.log(data);
+        const data = await request("https://api.tarkov.dev/graphql", query);
+        setAmmoData(data.ammo);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once when the component mounts
-  // This is where we will return the AmmoList component from the Tarkov API
+  }, []);
+
   return (
     <main>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
-          {'loading' ? (
-            <div>Loading...</div>
-          ) : (
-            // <ProfileList
-            //   profiles={profiles}
-            //   title="Here's the current roster of friends..."
-            // />
-          ''
-          )}
-        </div>
-      </div>
+      <TableContainer>
+        <Table variant="simple">
+          <TableCaption>Ammo Types</TableCaption>
+          <Thead>
+            <Tr>
+              <Th>Short Name</Th>
+              <Th>Caliber</Th>
+              <Th>Damage</Th>
+              <Th>Armor Damage</Th>
+              <Th>Fragmentation Chance</Th>
+              <Th>Penetration Chance</Th>
+              <Th>Accuracy Modifier</Th>
+              <Th>Recoil Modifier</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {ammoData.map((ammo) => (
+              <Tr key={ammo.item.id}>
+                <Td>{ammo.item.shortName}</Td>
+                <Td>{ammo.caliber}</Td>
+                <Td>{ammo.damage}</Td>
+                <Td>{ammo.armorDamage}</Td>
+                <Td>{ammo.fragmentationChance}</Td>
+                <Td>{ammo.penetrationChance}</Td>
+                <Td>{ammo.accuracyModifier}</Td>
+                <Td>{ammo.recoilModifier}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </main>
   );
 };
