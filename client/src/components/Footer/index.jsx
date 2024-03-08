@@ -1,12 +1,3 @@
-import {
-  Box,
-  Container,
-  Button,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,29 +35,13 @@ export default function Footer() {
   }, [location.pathname]);
 
   return (
-    <Box
-      style={footerStyle}
-      bg={useColorModeValue("gray.200", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
-    >
-      <Box
-        borderTopWidth={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.700")}
-      >
-        <Container
-          as={Stack}
-          maxW={"6xl"}
-          py={4}
-          direction={{ base: "column", md: "row" }}
-          spacing={4}
-          justify={{ base: "center", md: "space-between" }}
-          align={{ base: "center", md: "center" }}
-        >
-          <Text fontSize="18" fontWeight="700" color="#DBC59c">
+    <div style={footerStyle} className="bg-gray-200 text-gray-700">
+      <div className="border-t border-gray-200">
+        <div className="container mx-auto py-4 flex flex-col md:flex-row justify-between items-center">
+          <span className="text-18 font-bold text-yellow-500">
             © 2024 EFT Ballistics
-          </Text>
-          <Stack direction={"row"} spacing={6}>
+          </span>
+          <div className="flex space-x-6">
             <div className="list-inline-item">
               <a href="https://github.com/travisfowlston/EFT-Ballistics">
                 <FontAwesomeIcon
@@ -87,9 +62,9 @@ export default function Footer() {
                 />
               </a>
             </div>
-          </Stack>
-        </Container>
-      </Box>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

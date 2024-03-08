@@ -1,7 +1,5 @@
-import { Flex, Box, Button, useColorModeValue } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import Auth from '../../utils/auth'; 
-import { Image } from '@chakra-ui/react';
+import { Link as RouterLink } from "react-router-dom";
+import Auth from "../../utils/auth";
 
 const Header = () => {
   const logout = (event) => {
@@ -9,58 +7,42 @@ const Header = () => {
     Auth.logout();
   };
 
-  const bgColor = useColorModeValue('black'); 
-
   return (
-    <Flex
-      as="header"
-      bg={bgColor}
-      mb={4}
-      p={3}
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      borderBottom="1px" borderColor="#DBC59C" borderStyle="solid"
-      position="fixed" // Makes the header fixed
-      top="0" 
-      left="0" 
-      width="100%" 
+    <header
+      className="mb-4 p-3 d-flex align-items-center justify-content-between flex-wrap border-bottom border-color-#DBC59C position-fixed top-0 left-0 w-100"
     >
-      <Box>
+      <div>
         <RouterLink to="/">
-          <Image
-            src="./src/assets/logo.png" 
+          <img
+            src="./src/assets/logo.png"
             alt="EFT-BALLISTICS Logo"
-            w="300px"
-            h="10"
-            objectFit="cover"
-            border="1px" borderColor="#DBC59C" borderStyle="solid"
+            className="w-300px h-10 object-fit-cover border-1px border-color-#DBC59C"
           />
         </RouterLink>
-      </Box>
+      </div>
 
-      <Box>
+      <div>
         {Auth.loggedIn() ? (
           <>
-            <Button as={RouterLink} to="/me" backgroundColor="#DBC59C" color="black" mr={2}>
+            <a href="/me" className="btn btn-primary mr-2">
               View My Profile
-            </Button>
-            <Button onClick={logout} backgroundColor="#DBC59C" color="black">
+            </a>
+            <button onClick={logout} className="btn btn-primary">
               Logout
-            </Button>
+            </button>
           </>
         ) : (
           <>
-            <Button as={RouterLink} to="/login" backgroundColor="#DBC59C" color="black" mr={2}>
+            <a href="/login" className="btn btn-primary mr-2">
               Login
-            </Button>
-            <Button as={RouterLink} to="/signup" backgroundColor="#DBC59C" color="black">
+            </a>
+            <a href="/signup" className="btn btn-primary">
               Signup
-            </Button>
+            </a>
           </>
         )}
-      </Box>
-    </Flex>
+      </div>
+    </header>
   );
 };
 
