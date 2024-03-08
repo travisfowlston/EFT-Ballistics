@@ -1,18 +1,5 @@
 import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
-import {
-  Box,
-  Flex,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-  Container,
-} from "@chakra-ui/react";
 
 const Home = () => {
   const [ammoData, setAmmoData] = useState([]);
@@ -52,39 +39,37 @@ const Home = () => {
 
   return (
     <main>
-      <Box>
-        <TableContainer>
-          <Table variant="simple">
-            <TableCaption>Ammo Types</TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Short Name</Th>
-                <Th>Caliber</Th>
-                <Th>Damage</Th>
-                <Th>Armor Damage</Th>
-                <Th>Fragmentation Chance</Th>
-                <Th>Penetration Chance</Th>
-                <Th>Accuracy Modifier</Th>
-                <Th>Recoil Modifier</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {ammoData.map((ammo) => (
-                <Tr key={ammo.item.id}>
-                  <Td>{ammo.item.shortName}</Td>
-                  <Td>{ammo.caliber}</Td>
-                  <Td>{ammo.damage}</Td>
-                  <Td>{ammo.armorDamage}</Td>
-                  <Td>{ammo.fragmentationChance}</Td>
-                  <Td>{ammo.penetrationChance}</Td>
-                  <Td>{ammo.accuracyModifier}</Td>
-                  <Td>{ammo.recoilModifier}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </Box>
+      <div className="container">
+        <table className="table">
+          <caption>Ammo Types</caption>
+          <thead>
+            <tr>
+              <th>Short Name</th>
+              <th>Caliber</th>
+              <th>Damage</th>
+              <th>Armor Damage</th>
+              <th>Fragmentation Chance</th>
+              <th>Penetration Chance</th>
+              <th>Accuracy Modifier</th>
+              <th>Recoil Modifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ammoData.map((ammo) => (
+              <tr key={ammo.item.id}>
+                <td>{ammo.item.shortName}</td>
+                <td>{ammo.caliber}</td>
+                <td>{ammo.damage}</td>
+                <td>{ammo.armorDamage}</td>
+                <td>{ammo.fragmentationChance}</td>
+                <td>{ammo.penetrationChance}</td>
+                <td>{ammo.accuracyModifier}</td>
+                <td>{ammo.recoilModifier}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </main>
   );
 };
