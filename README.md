@@ -1,6 +1,7 @@
 # EFT-Ballistics
 
 ## Description
+
 This project is a ballistics calculator for the game Escape from Tarkov (EFT). It helps players calculate damage, armor penetration, fragmentation chance, bullet velocity, recoil effects, and accuracy of different ammunition's in the pc game Escape From Tarkov.
 
 ## Features
@@ -25,4 +26,4 @@ Users will be able to create an account to save their favorite weapons and ammo 
 
 ## License
 
-GNU Public License 
+- GNU Public License 
