@@ -14,6 +14,7 @@ const Home = () => {
               id
               shortName
               name
+              gridImageLink
             }
             caliber
             tracer
@@ -56,11 +57,14 @@ const Home = () => {
       <div className="container">
         {Object.keys(groupedAmmo).map((caliber) => (
           <table key={caliber} className="table">
-            <caption>{`Ammo Types - Caliber: ${caliber}`}</caption>
+          
+            <caption>Ammo Type</caption>
             <thead>
+              
               <tr>
+                <th>Image</th>
                 <th>Short Name</th>
-                <th>Caliber</th>
+                <th>caliber</th>
                 <th>Damage</th>
                 <th>Armor Damage</th>
                 <th>Fragmentation Chance</th>
@@ -72,6 +76,9 @@ const Home = () => {
             <tbody>
               {groupedAmmo[caliber].map((ammo) => (
                 <tr key={ammo.item.id}>
+                  <td> <img src={ammo.item.gridImageLink} alt={ammo.item.shortName} style={{ width: '50px', height: '50px' }} />
+                  
+                  </td>
                   <td>{ammo.item.shortName}</td>
                   <td>{ammo.caliber}</td>
                   <td>{ammo.damage}</td>
