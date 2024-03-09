@@ -57,10 +57,8 @@ const Home = () => {
       <div className="container">
         {Object.keys(groupedAmmo).map((caliber) => (
           <table key={caliber} className="table">
-          
-            <caption>Ammo Type</caption>
+            <caption>{`Ammo Types - Caliber: ${caliber}`}</caption>
             <thead>
-              
               <tr>
                 <th>Image</th>
                 <th>Short Name</th>
@@ -76,8 +74,13 @@ const Home = () => {
             <tbody>
               {groupedAmmo[caliber].map((ammo) => (
                 <tr key={ammo.item.id}>
-                  <td> <img src={ammo.item.gridImageLink} alt={ammo.item.shortName} style={{ width: '50px', height: '50px' }} />
-                  
+                  <td>
+                    {" "}
+                    <img
+                      src={ammo.item.gridImageLink}
+                      alt={ammo.item.shortName}
+                      style={{ width: "50px", height: "50px" }}
+                    />
                   </td>
                   <td>{ammo.item.shortName}</td>
                   <td>{ammo.caliber}</td>
