@@ -35,12 +35,9 @@ export default function Footer() {
   }, [location.pathname]);
 
   return (
-    <div style={footerStyle} className="bg-gray-200 text-gray-700">
-      <div className="border-t border-gray-200">
-        <div className="container mx-auto py-4 flex flex-col md:flex-row justify-between items-center">
-          <span className="text-18 font-bold text-yellow-500">
-            © 2024 EFT Ballistics
-          </span>
+    <footer>
+      <span>© 2024 EFT Ballistics
+    <div style={footerStyle}>
           <div className="flex space-x-6">
             <div className="list-inline-item">
               <a href="https://github.com/travisfowlston/EFT-Ballistics">
@@ -61,10 +58,10 @@ export default function Footer() {
                   className="icon z-2"
                 />
               </a>
-            </div>
+            </div> 
           </div>
         </div>
-      </div>
-    </div>
+        </span>
+    </footer>
   );
 }
