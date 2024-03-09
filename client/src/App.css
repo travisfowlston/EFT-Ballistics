@@ -2,12 +2,24 @@
 
 /* Footer Section */
 
-  .icon:hover {
-    transform: scale(1.15);
-    transition: transform 0.05s ease;
-    color: #DBC59c !important;
+  footer {
+    background-color: #757272;
+    color: #DBC59c;
+    padding: 30px;
+    padding-top: 20px;
+    text-align: center;
+    display: inline-flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
   }
-/* Padding required to prevent header from overlapping with content */
-  .container {
-    padding-top: 100px;
+ span {
+  position: fixed;
+  padding-bottom: 1rem;
+  }
+  .icon:hover {
+    transform: scale(1.25);
+    transition: transform 0.05s ease;
+    color: #28241b !important;
   }
