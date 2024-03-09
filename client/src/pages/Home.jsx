@@ -57,12 +57,12 @@ const Home = () => {
       <div className="container">
         {Object.keys(groupedAmmo).map((caliber) => (
           <table key={caliber} className="table">
-            <caption>{`Ammo Types - Caliber: ${caliber}`}</caption>
+            <caption>{` ${caliber}`}</caption>
             <thead>
               <tr>
-                <th>Image</th>
+                <th></th>
                 <th>Short Name</th>
-                <th>caliber</th>
+
                 <th>Damage</th>
                 <th>Armor Damage</th>
                 <th>Fragmentation Chance</th>
@@ -83,7 +83,6 @@ const Home = () => {
                     />
                   </td>
                   <td>{ammo.item.shortName}</td>
-                  <td>{ammo.caliber}</td>
                   <td>{ammo.damage}</td>
                   <td>{ammo.armorDamage}</td>
                   <td>{ammo.fragmentationChance}</td>
