@@ -8,7 +8,7 @@ const Header = () => {
   };
 
   return (
-    <header className="container mb-4 p-3 d-flex align-items-center justify-content-between border-bottom border-color-#DBC59C position-fixed top-0 left-0 w-100">
+    <header>
       <div>
         <RouterLink to="/">
           <img
