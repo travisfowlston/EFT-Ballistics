@@ -1,10 +1,18 @@
 /* styles go here */
+:root {
+  --background-color: #787565;
+  --second-bg-color: #DBC59c;
+  --bs-dark-bg-subtle: #ced4da;
+  --primary-grey: #757272;
+  --primary-blue-grey: #566573;
+}
 
 /* General Styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--primary-blue-grey);
 }
 
 h1 {
@@ -67,7 +75,7 @@ header {
 
 /* Footer Section */
 footer {
-  background-color: #757272;
+  background-color: var(--primary-grey);
   color: #dbc59c;
   padding: 30px;
   padding-top: 20px;
