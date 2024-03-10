@@ -73,7 +73,7 @@ const Home = () => {
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Short Name</th>
+                    <th>Name</th>
                     <th>Damage</th>
                     <th>Armor Damage</th>
                     <th>Fragmentation Chance</th>
