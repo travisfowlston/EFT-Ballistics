@@ -22,7 +22,7 @@ const Home = () => {
             damage
             armorDamage
             fragmentationChance
-            penetrationChance
+            penetrationPower
             accuracyModifier
             recoilModifier
           }
@@ -76,7 +76,7 @@ const Home = () => {
                     <th>Damage</th>
                     <th>Armor Damage</th>
                     <th>Fragmentation Chance</th>
-                    <th>Penetration Chance</th>
+                    <th>Penetration Power</th>
                     <th>Accuracy Modifier</th>
                     <th>Recoil Modifier</th>
                     <th>Save to profile</th>
@@ -97,7 +97,7 @@ const Home = () => {
                       <td>{ammo.damage}</td>
                       <td>{ammo.armorDamage}</td>
                       <td>{ammo.fragmentationChance}</td>
-                      <td>{ammo.penetrationChance}</td>
+                      <td>{ammo.penetrationPower}</td>
                       <td>{ammo.accuracyModifier}</td>
                       <td>{ammo.recoilModifier}</td>
                       <td>
