@@ -41,15 +41,15 @@ const Signup = () => {
   };
 
   return (
-    <main className="form-signin w-100 m-auto">
+    <main className="container-fluid signup">
       {data ? (
-        <div>
+        <div className="form-signin">
           <p>
             Success! You may now head <Link to="/">back to the homepage.</Link>
           </p>
         </div>
       ) : (
-        <div>
+        <div className="form-signin">
           <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
           <p className="text-secondary">
             Already have an account? <Link to="/login">Login</Link>

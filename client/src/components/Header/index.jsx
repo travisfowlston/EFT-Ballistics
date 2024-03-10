@@ -8,9 +8,7 @@ const Header = () => {
   };
 
   return (
-    <header
-      className="mb-4 p-3 d-flex align-items-center justify-content-between flex-wrap border-bottom border-color-#DBC59C position-fixed top-0 left-0 w-100"
-    >
+    <header className="container mb-4 p-3 d-flex align-items-center justify-content-between border-bottom border-color-#DBC59C position-fixed top-0 left-0 w-100">
       <div>
         <RouterLink to="/">
           <img
@@ -24,10 +22,10 @@ const Header = () => {
       <div>
         {Auth.loggedIn() ? (
           <>
-            <a href="/me" className="btn btn-primary mr-2">
+            <a href="/me" className="btn btn-primary">
               View My Profile
             </a>
-            <button onClick={logout} className="btn btn-primary">
+            <button onClick={logout} className="btn btn-danger">
               Logout
             </button>
           </>
