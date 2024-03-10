@@ -56,7 +56,13 @@ li {
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
-
+header{
+  background-Image:
+      url(./src/assets/oberin-ojm-escape-from-tarkov-wallpaper-3840x2160-d3hell.jpg);
+    background-Size: cover;
+    background-Position: center;
+    height: "200px";
+}
 /* Footer Section */
 footer {
   background-color: #757272;

@@ -2,6 +2,14 @@ import { Link as RouterLink } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 const Header = () => {
+  // const headerStyle = {
+  //   backgroundImage:
+  //     "url(./src/assets/oberin-ojm-escape-from-tarkov-wallpaper-3840x2160-d3hell.jpg)",
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   height: "300px",
+  // };
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
