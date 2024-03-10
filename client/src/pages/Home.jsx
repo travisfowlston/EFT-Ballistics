@@ -80,6 +80,7 @@ const Home = () => {
                     <th>Penetration Chance</th>
                     <th>Accuracy Modifier</th>
                     <th>Recoil Modifier</th>
+                    <th>Save to profile</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -100,6 +101,19 @@ const Home = () => {
                       <td>{ammo.penetrationChance}</td>
                       <td>{ammo.accuracyModifier}</td>
                       <td>{ammo.recoilModifier}</td>
+                      <td>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`save-${ammo.item.id}`}
+                            onChange={() => saveToProfile(ammo)}
+                          />
+                          <label className="form-check-label" htmlFor={`save-${ammo.item.id}`}>
+                            Save
+                          </label>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
