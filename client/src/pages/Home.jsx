@@ -54,11 +54,11 @@ const Home = () => {
 
   return (
     <main>
-      <div className="container">
+      <div className="container mt-4 mb-4">
         {Object.keys(groupedAmmo).map((caliber) => (
           <div key={caliber}>
             <button
-              className="btn btn-primary position-relative w-10 mb-2 padding-1"
+              className="btn btn-dark position-relative w-10 mb-4 mt-4 padding-1"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={`#caliber-${caliber}`}
@@ -68,8 +68,7 @@ const Home = () => {
               {caliber}
             </button>
             <div className="collapse show" id={`caliber-${caliber}`}>
-              <table className="table">
-                <caption>{`${caliber}`}</caption>
+              <table className="table table-dark table-striped-columns">
                 <thead>
                   <tr>
                     <th></th>
@@ -109,7 +108,10 @@ const Home = () => {
                             id={`save-${ammo.item.id}`}
                             onChange={() => saveToProfile(ammo)}
                           />
-                          <label className="form-check-label" htmlFor={`save-${ammo.item.id}`}>
+                          <label
+                            className="form-check-label"
+                            htmlFor={`save-${ammo.item.id}`}
+                          >
                             Save
                           </label>
                         </div>
