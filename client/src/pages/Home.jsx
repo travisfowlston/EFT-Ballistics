@@ -58,16 +58,16 @@ const Home = () => {
         {Object.keys(groupedAmmo).map((caliber) => (
           <div key={caliber}>
             <button
-              className="btn btn-primary position-relative w-100 mb-2 padding-1"
+              className="btn btn-primary position-relative w-10 mb-2 padding-1"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={`#caliber-${caliber}`}
-              aria-expanded="false"
+              aria-expanded="true"
               aria-controls={`caliber-${caliber}`}
             >
               {caliber}
             </button>
-            <div className="collapse" id={`caliber-${caliber}`}>
+            <div className="collapse show" id={`caliber-${caliber}`}>
               <table className="table">
                 <caption>{`${caliber}`}</caption>
                 <thead>
