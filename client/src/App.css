@@ -41,10 +41,16 @@ li {
 }
 
 /* Signup Section */
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./assets/background.png");
+}
 .form-signin {
+  width: 100%;
   max-width: 330px;
   padding: 1rem;
-  background-image: url("./assets/background.png");
 }
 
 .form-signin .form-floating:focus-within {
