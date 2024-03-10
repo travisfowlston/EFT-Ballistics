@@ -35,11 +35,13 @@ const client = new ApolloClient({
 export default function App() {
   return (
     <ApolloProvider client={client}>
+      <div>
         <Header />
         <div className="container">
           <Outlet />
         </div>
         <Footer />
+      </div>
     </ApolloProvider>
   );
 }

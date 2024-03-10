@@ -58,7 +58,7 @@ const Home = () => {
         {Object.keys(groupedAmmo).map((caliber) => (
           <div key={caliber}>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary position-relative w-100 mb-2 padding-1"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={`#caliber-${caliber}`}
