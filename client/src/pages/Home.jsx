@@ -56,43 +56,56 @@ const Home = () => {
     <main>
       <div className="container">
         {Object.keys(groupedAmmo).map((caliber) => (
-          <table key={caliber} className="table">
-            <caption>{` ${caliber}`}</caption>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Short Name</th>
-
-                <th>Damage</th>
-                <th>Armor Damage</th>
-                <th>Fragmentation Chance</th>
-                <th>Penetration Chance</th>
-                <th>Accuracy Modifier</th>
-                <th>Recoil Modifier</th>
-              </tr>
-            </thead>
-            <tbody>
-              {groupedAmmo[caliber].map((ammo) => (
-                <tr key={ammo.item.id}>
-                  <td>
-                    {" "}
-                    <img
-                      src={ammo.item.gridImageLink}
-                      alt={ammo.item.shortName}
-                      style={{ width: "50px", height: "50px" }}
-                    />
-                  </td>
-                  <td>{ammo.item.shortName}</td>
-                  <td>{ammo.damage}</td>
-                  <td>{ammo.armorDamage}</td>
-                  <td>{ammo.fragmentationChance}</td>
-                  <td>{ammo.penetrationChance}</td>
-                  <td>{ammo.accuracyModifier}</td>
-                  <td>{ammo.recoilModifier}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div key={caliber}>
+            <button
+              className="btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target={`#caliber-${caliber}`}
+              aria-expanded="false"
+              aria-controls={`caliber-${caliber}`}
+            >
+              {caliber}
+            </button>
+            <div className="collapse" id={`caliber-${caliber}`}>
+              <table className="table">
+                <caption>{`${caliber}`}</caption>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Short Name</th>
+                    <th>Damage</th>
+                    <th>Armor Damage</th>
+                    <th>Fragmentation Chance</th>
+                    <th>Penetration Chance</th>
+                    <th>Accuracy Modifier</th>
+                    <th>Recoil Modifier</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {groupedAmmo[caliber].map((ammo) => (
+                    <tr key={ammo.item.id}>
+                      <td>
+                        {" "}
+                        <img
+                          src={ammo.item.gridImageLink}
+                          alt={ammo.item.shortName}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      </td>
+                      <td>{ammo.item.shortName}</td>
+                      <td>{ammo.damage}</td>
+                      <td>{ammo.armorDamage}</td>
+                      <td>{ammo.fragmentationChance}</td>
+                      <td>{ammo.penetrationChance}</td>
+                      <td>{ammo.accuracyModifier}</td>
+                      <td>{ammo.recoilModifier}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         ))}
       </div>
     </main>
