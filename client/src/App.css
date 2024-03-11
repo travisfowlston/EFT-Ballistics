@@ -53,7 +53,10 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("./assets/background.png");
+  color: antiquewhite;
+  margin-bottom: 70px;
+  padding-top: 0%;
+  background-color: #212529;
 }
 .form-signin {
   width: 100%;

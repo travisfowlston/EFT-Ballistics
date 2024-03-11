@@ -1,4 +1,72 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+
+const Profile = () => {
+  const { profileId } = useParams();
+  const [savedItems, setSavedItems] = useState([]);
+
+  const { loading, data } = useQuery(profileId ? QUERY_SINGLE_PROFILE : QUERY_ME, {
+    variables: { profileId },
+  });
+
+  const profile = data?.me || data?.profile || {};
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('savedItems') || '[]');
+    setSavedItems(items);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('savedItems', JSON.stringify(savedItems));
+  }, [savedItems]);
+
+  const deleteItem = (itemId) => {
+    setSavedItems((prevItems) => prevItems.filter(item => item.item.id !== itemId));
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (!profile?.name) return <h4>You need to be logged in to see this page.</h4>;
+
+  return (
+    <main>
+      <div className="container mt-4 mb-4">
+        <h2 className="mb-4">
+          {profileId ? `${profile.name}'s` : 'Your'} saved ammo!
+        </h2>
+        <div>
+          {savedItems.length > 0 ? (
+            savedItems.map((item) => (
+              <div key={item.item.id} className="mb-2">
+                <div className="card" style={{ backgroundColor: '#212529'}}>
+                  <div className="card-body">
+                    <h5 className="card-title" style= {{ color: 'white'}}>{item.item.shortName}</h5>
+                    <p className="card-text" style= {{ color: 'white'}}>Damage: {item.damage}, Armor Damage: {item.armorDamage}, Fragmentation Chance: {item.fragmentationChance}, Penetration Power: {item.penetrationPower}, Accuracy Modifier: {item.accuracyModifier}, Recoil Modifier: {item.recoilModifier}</p>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteItem(item.item.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No saved ammo items.</p>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Profile;
+
+
+
+/*import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
@@ -49,3 +117,4 @@ const Profile = () => {
 };
 
 export default Profile;
+*/
