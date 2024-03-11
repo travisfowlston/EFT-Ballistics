@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation } from "@apollo/client";
 import { ADD_PROFILE } from "../utils/mutations";
-
+import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import Auth from "../utils/auth";
 
 const Signup = () => {
@@ -41,7 +41,9 @@ const Signup = () => {
   };
 
   return (
-    <main className="container-fluid signup">
+    <main className='Container mt-3 mx-5 center_content'>
+       <section className='d-flex justify-content-center'>
+       <div className='center_content border mt-5 p-5 signup' >
       {data ? (
         <div className="form-signin">
           <p>
@@ -50,9 +52,23 @@ const Signup = () => {
         </div>
       ) : (
         <div className="form-signin">
-          <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
-          <p className="text-secondary">
-            Already have an account? <Link to="/login">Login</Link>
+          <h1 className="h3 mb-3 fw-normal signup">Please sign up</h1>
+          <center>
+          <FontAwesomeIcon
+                  icon={faTwitter}
+                  size="2x"
+                  style={{ color: "#DBC59c" }}
+                  className="icon z-2"
+                />
+          <FontAwesomeIcon
+                  icon={faFacebook}
+                  size="2x"
+                  style={{ color: "#DBC59c" }}
+                  className="icon z-2"
+                />
+          </center>
+          <p className="text-secondary" class="text-white">
+            <bold>Already have an account? <Link to="/login">Login</Link></bold>
           </p>
           <form onSubmit={handleFormSubmit}>
             <div className="form-floating">
@@ -108,6 +124,8 @@ const Signup = () => {
           </form>
         </div>
       )}
+      </div>
+      </section>
     </main>
   );
 };
