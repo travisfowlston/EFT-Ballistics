@@ -12,6 +12,7 @@
 body {
   font-family: "Roboto Condensed", sans-serif;
   background-color: var(--primary-blue-grey);
+  padding-top: 200px; /* Adjust based on header height */
 }
 
 h1 {
@@ -69,7 +70,27 @@ header {
   background-image: url(./src/assets/oberin-ojm-escape-from-tarkov-wallpaper-3840x2160-d3hell.jpg);
   background-size: cover;
   background-position: center;
-  height: "200px";
+  height: 200px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  width: 100%; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  z-index: 1030; 
+}
+
+.custom-btn {
+  background-color: var(--second-bg-color); 
+  border: 1px solid var(--second-bg-color); 
+  color: #000; 
+}
+
+.custom-btn:hover {
+  background-color: darken(#DBC59C, 10%);
+  border-color: darken(#DBC59C, 10%);
 }
 
 /* Footer Section */
