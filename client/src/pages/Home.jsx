@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
 
 const Home = () => {
+  // Creates a state variable to store the ammo data
   const [ammoData, setAmmoData] = useState([]);
-  const [savedItems, setSavedItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,28 +40,17 @@ const Home = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('savedItems') || '[]');
-    setSavedItems(items);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('savedItems', JSON.stringify(savedItems));
-  }, [savedItems]);
-
-  const saveToProfile = (ammo) => {
-    setSavedItems(prevItems => {
-      const exists = prevItems.some(item => item.item.id === ammo.item.id);
-      return exists ? prevItems.filter(item => item.item.id !== ammo.item.id) : [...prevItems, ammo];
-    });
-  };
-
-  const groupedAmmo = ammoData.reduce((acc, ammo) => {
-    acc[ammo.caliber] = acc[ammo.caliber] || [];
-    acc[ammo.caliber].push(ammo);
-    return acc;
-  }, {});
-
+  // Creates an empty object
+  const groupedAmmo = {};
+  // Loops through the ammoData array and groups the ammo by caliber
+  ammoData.forEach((ammo) => {
+    // If the caliber doesn't exist in the groupedAmmo object, it will create an empty array
+    if (!groupedAmmo[ammo.caliber]) {
+      groupedAmmo[ammo.caliber] = [];
+    }
+    // Pushes the ammo into the array
+    groupedAmmo[ammo.caliber].push(ammo);
+  });
 
   return (
     <main>
@@ -97,6 +86,7 @@ const Home = () => {
                   {groupedAmmo[caliber].map((ammo) => (
                     <tr key={ammo.item.id}>
                       <td>
+                        {" "}
                         <img
                           src={ammo.item.gridImageLink}
                           alt={ammo.item.shortName}
@@ -111,12 +101,20 @@ const Home = () => {
                       <td>{ammo.accuracyModifier}</td>
                       <td>{ammo.recoilModifier}</td>
                       <td>
-                        <button
-                          className="btn btn-success"
-                          onClick={() => saveToProfile(ammo)}
-                        >
-                          Save
-                        </button>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`save-${ammo.item.id}`}
+                            onChange={() => saveToProfile(ammo)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`save-${ammo.item.id}`}
+                          >
+                            Save
+                          </label>
+                        </div>
                       </td>
                     </tr>
                   ))}
