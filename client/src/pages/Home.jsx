@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
-
+import { useMutation } from "@apollo/client";
+import { ADD_AMMO } from "../utils/mutations";
+import Auth from "../utils/auth";
 const Home = () => {
   // Creates a state variable to store the ammo data
   const [ammoData, setAmmoData] = useState([]);
@@ -23,7 +25,7 @@ const Home = () => {
             armorDamage
             fragmentationChance
             penetrationPower
-            accuracyModifier
+            accuracyModifier 
             recoilModifier
           }
         }
@@ -51,6 +53,21 @@ const Home = () => {
     // Pushes the ammo into the array
     groupedAmmo[ammo.caliber].push(ammo);
   });
+
+  function saveToProfile(ammo) {
+    const saveButton= document.getElementById(`save-${ammo.item.id}`);
+    if (saveButton.checked) {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      if (!token) {
+        return false;
+      }
+      ADD_AMMO({
+       useMutation: ADD_AMMO,
+        variables: { ammoId: ammo.item.id },
+      });
+    }
+    console.log(ammo);
+  }
 
   return (
     <main>
