@@ -43,10 +43,41 @@ const resolvers = {
       return { token, profile };
     },
 
+    // Add a third argument to the resolver to access data in our `context`
+    addAmmo: async (parent, { profileId, ammo }, context) => {
+      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: profileId },
+          {
+            $addToSet: { ammos: ammo },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      // If user attempts to execute this mutation and isn't logged in, throw an error
+      throw AuthenticationError;
+    },
+
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
+      }
+      throw AuthenticationError;
+    },
+
+    // Make it so a logged in user can only remove a ammo from their own profile
+    removeAmmo: async (parent, { ammo }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { ammos: ammo } },
+          { new: true }
+        );
       }
       throw AuthenticationError;
     },
