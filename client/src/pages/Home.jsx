@@ -3,9 +3,11 @@ import { request, gql } from "graphql-request";
 import { useMutation } from "@apollo/client";
 import { ADD_AMMO } from "../utils/mutations";
 import Auth from "../utils/auth";
+
 const Home = () => {
   // Creates a state variable to store the ammo data
   const [ammoData, setAmmoData] = useState([]);
+  const [selectedAmmoIds, setSelectedAmmoIds] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +27,7 @@ const Home = () => {
             armorDamage
             fragmentationChance
             penetrationPower
-            accuracyModifier 
+            accuracyModifier
             recoilModifier
           }
         }
@@ -54,19 +56,29 @@ const Home = () => {
     groupedAmmo[ammo.caliber].push(ammo);
   });
 
+  const [addAmmo] = useMutation(ADD_AMMO);
+
   function saveToProfile(ammo) {
-    const saveButton= document.getElementById(`save-${ammo.item.id}`);
+    const saveButton = document.getElementById(`save-${ammo.item.id}`);
+
     if (saveButton.checked) {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
+
       if (!token) {
         return false;
       }
-      ADD_AMMO({
-       useMutation: ADD_AMMO,
+
+      addAmmo({
         variables: { ammoId: ammo.item.id },
       });
+
+      setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.id]);
     }
-    console.log(ammo);
+  }
+
+  function handleSubmit() {
+    // Handle the submission of selected ammo IDs
+    console.log("Selected Ammo IDs:", selectedAmmoIds);
   }
 
   return (
@@ -141,6 +153,14 @@ const Home = () => {
           </div>
         ))}
       </div>
+      {selectedAmmoIds.length > 0 && (
+        <button
+          className="btn btn-dark btn-floating btn-sm rounded-circle position-fixed bottom-0 end-0 m-3"
+          onClick={handleSubmit}
+        >
+          Add Ammo to Profile
+        </button>
+      )}
     </main>
   );
 };
