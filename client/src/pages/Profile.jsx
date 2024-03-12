@@ -1,37 +1,72 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { useState, useEffect } from "react";
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
+import { REMOVE_AMMO } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const Profile = () => {
+  // Retrieves the profileId from the URL
   const { profileId } = useParams();
-  const [savedItems, setSavedItems] = useState([]);
+  // Creates a state variable to store the saved ammo
+  const [savedAmmos, setSavedAmmos] = useState([]);
 
-  const { loading, data } = useQuery(
+  // Queries the database for the profile data
+  const { loading, data, error } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
-    {
-      variables: { profileId },
-    }
+    { variables: { profileId } }
   );
 
-  const profile = data?.me || data?.profile || {};
-console.log(profile);
- 
+  // If the data exists, it sets the savedAmmos state to the profile's ammo
+  useEffect(() => {
+    if (data) {
+      const profileData = profileId ? data.profile : data.me;
+      setSavedAmmos(profileData.ammos || []);
+    }
+  }, [data, profileId]);
 
-  // const deleteItem = (itemId) => {
-  //   setSavedItems((prevItems) =>
-  //     prevItems.filter((item) => item.item.id !== itemId)
-  //   );
-  // };
+  // Creates a mutation to remove ammo from the profile
+  const [removeAmmo] = useMutation(REMOVE_AMMO);
+
+  // This function handles removing ammo from the profile
+  const handleRemoveAmmo = (ammo) => {
+    // Retrieves the token from the Auth service
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    // Executes the removeAmmo mutation with the ammo and profileId as variables
+    removeAmmo({
+      variables: {
+        // If the ammo is an object, it uses the shortName property, otherwise it uses the ammo itself
+        ammo: ammo.item?.shortName || ammo,
+        profileId: Auth.getProfile().data._id,
+      },
+      // Updates the cache with the new profile data
+    }).then(() => {
+      setSavedAmmos((prevAmmos) =>
+        prevAmmos.filter((savedAmmo) => savedAmmo !== ammo)
+      );
+    });
+  };
 
   if (loading) return <div>Loading...</div>;
-  if (!profile?.name) {
+  if (error)
     return (
       <div className="container d-flex justify-content-center align-items-center mt-5 pt-5 pb-5 border border-3 border-danger">
         <div className="text-center text-white">
-          <h1>How dare you... </h1>
+          <h1>How dare you...</h1>
           <h4>You need to be logged in to see this page!</h4>
         </div>
+      </div>
+    );
+  if (!data?.me && !data?.profile) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center mt-5 pt-5 pb-5 border border-3 border-danger">
+        <div className="text-center text-white"></div>
       </div>
     );
   }
@@ -40,94 +75,36 @@ console.log(profile);
     <main>
       <div className="container mt-4 mb-4">
         <h1 className="mb-4">
-          {profileId ? `${profile.name}'s` : "Your"} saved ammo!
+          {profileId ? `${data.profile?.name || "This profile"}'s` : "Your"}{" "}
+          saved ammo!
         </h1>
-        <div>
-          {savedItems.length > 0 ? (
-            savedItems.map((item) => (
-              <div key={item.item.id} className="mb-2">
-                <div className="card" style={{ backgroundColor: "#212529" }}>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "white" }}>
-                      {item.item.shortName}
-                    </h5>
-                    <p className="card-text" style={{ color: "white" }}>
-                      Damage: {item.damage}, Armor Damage: {item.armorDamage},
-                      Fragmentation Chance: {item.fragmentationChance},
-                      Penetration Power: {item.penetrationPower}, Accuracy
-                      Modifier: {item.accuracyModifier}, Recoil Modifier:{" "}
-                      {item.recoilModifier}
-                    </p>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteItem(item.item.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
+        {savedAmmos.length > 0 ? (
+          savedAmmos.map((ammo, index) => (
+            <div key={index} className="mb-2">
+              <div className="card" style={{ backgroundColor: "#212529" }}>
+                <div className="card-body">
+                  <h5 className="card-title" style={{ color: "white" }}>
+                    Ammo: {ammo}
+                  </h5>
+                </div>
+                <div className="card-footer">
+                  <button
+                    className="btn btn-danger"
+                    style={{ margin: "10px" }}
+                    onClick={() => handleRemoveAmmo(ammo)}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
-            ))
-          ) : (
-            <p>No saved ammo items.</p>
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <p style={{ color: "white" }}>No saved ammo items.</p>
+        )}
       </div>
     </main>
   );
 };
 
 export default Profile;
-
-/*import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
-
-
-const Profile = () => {
-  const { profileId } = useParams();
-
-  // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
-  const { loading, data } = useQuery(
-    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
-    {
-      variables: { profileId: profileId },
-    }
-  );
-
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
-  const profile = data?.me || data?.profile || {};
-
-  // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to="/me" />;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!profile?.name) {
-    return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
-    );
-  }
-
-  return (
-    <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
-      </h2>
-    </div>
-  );
-};
-
-export default Profile;
-*/

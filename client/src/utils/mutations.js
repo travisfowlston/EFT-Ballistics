@@ -35,7 +35,7 @@ export const ADD_AMMO = gql`
 `;
 
 export const REMOVE_AMMO = gql`
-  mutation removeAmmo {
+  mutation removeAmmo ($ammo: String!) {
     removeAmmo(ammo: $ammo) {
       _id
       name

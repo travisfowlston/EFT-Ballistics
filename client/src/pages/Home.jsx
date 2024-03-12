@@ -56,23 +56,26 @@ const Home = () => {
     groupedAmmo[ammo.caliber].push(ammo);
   });
 
+  // Creates a mutation to add ammo to the profile
   const [addAmmo] = useMutation(ADD_AMMO);
 
+  // This function handles saving the ammo to the profile
   function saveToProfile(ammo) {
+    // If the user is not logged in, it will return false
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
-
+    // This takes in the variables to be passed into the mutation
     addAmmo({
       variables: {
-        ammo: ammo.item.id,
+        ammo: ammo.item.shortName,
         profileId: Auth.getProfile().data._id,
       },
     });
-
-    setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.id]);
+    // Adds the ammo to the selectedAmmoIds array
+    setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.shortName]);
     console.log(selectedAmmoIds);
   }
 
