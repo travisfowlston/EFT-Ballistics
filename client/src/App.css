@@ -13,8 +13,6 @@
 body {
   font-family: "Roboto Condensed", sans-serif;
   background-color: var(--primary-blue-grey);
-  padding-top: 200px;
-  /* Adjust based on header height */
 }
 
 h1 {
@@ -87,25 +85,36 @@ li {
 }
 
 /* Header Section */
-/*Header Section */
 .navbar-brand {
   font-size: 1.55rem;
   font-weight: 700;
   padding: 1.5rem !important;
   color: var(--second-bg-color) !important;
 }
-body {
-  padding-top: 56px; 
+
+nav a.nav-link {
+  font-weight: 200;
+  font-size: 1.1rem;
+  letter-spacing: 0.0375rem;
+  cursor: pointer;
 }
 
-@media (min-width: 992px) { 
-  body {
-    padding-top: 72px; 
- }
+nav ul li {
+  text-transform: uppercase;
 }
-.custom-btn-nav {
+
+.navbar-nav > li > a {
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+  color: var(--primary-white) !important;
+}
+
+.navbar-nav > li > a:hover {
+  transform: scale(1.05);
+  transition: transform 0.05s ease;
   color: var(--second-bg-color) !important;
 }
+
 /* Footer Section */
 footer {
   background-color: var(--primary-grey);

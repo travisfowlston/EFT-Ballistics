@@ -37,7 +37,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <div>
         <Header />
-        <div className="container">
+        <div>
           <Outlet />
         </div>
         <Footer />
