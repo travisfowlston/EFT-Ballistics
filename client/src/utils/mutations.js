@@ -34,7 +34,7 @@ export const ADD_AMMO = gql`
   }
 `;
 
-export const REMOVE_PROFILE = gql`
+export const REMOVE_AMMO = gql`
   mutation removeAmmo {
     removeAmmo(ammo: $ammo) {
       _id

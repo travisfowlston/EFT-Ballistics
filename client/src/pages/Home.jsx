@@ -57,30 +57,23 @@ const Home = () => {
   });
 
   const [addAmmo] = useMutation(ADD_AMMO);
-  console.log(Auth.getProfile().data._id);
+
   function saveToProfile(ammo) {
-    const saveButton = document.getElementById(`save-${ammo.item.id}`);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (saveButton.checked) {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-      if (!token) {
-        return false;
-      }
-
-      addAmmo({
-        variables: {
-          ammo: ammo.item.id,
-          profileId: Auth.getProfile().data._id,
-        },
-      });
-
-      setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.id]);
+    if (!token) {
+      return false;
     }
-  }
 
-  function handleSubmit() {
-    console.log("Selected Ammo IDs:", selectedAmmoIds);
+    addAmmo({
+      variables: {
+        ammo: ammo.item.id,
+        profileId: Auth.getProfile().data._id,
+      },
+    });
+
+    setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.id]);
+    console.log(selectedAmmoIds);
   }
 
   return (
@@ -132,20 +125,12 @@ const Home = () => {
                       <td>{ammo.accuracyModifier}</td>
                       <td>{ammo.recoilModifier}</td>
                       <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id={`save-${ammo.item.id}`}
-                            onChange={() => saveToProfile(ammo)}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor={`save-${ammo.item.id}`}
-                          >
-                            Save
-                          </label>
-                        </div>
+                        <button
+                          className="btn btn-dark signUpBtn"
+                          onClick={() => saveToProfile(ammo)}
+                        >
+                          Save
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -155,14 +140,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-      {selectedAmmoIds.length > 0 && (
-        <button
-          className="btn btn-dark btn-floating btn-sm rounded-circle position-fixed bottom-0 end-0 m-3"
-          onClick={handleSubmit}
-        >
-          Add Ammo to Profile
-        </button>
-      )}
     </main>
   );
 };

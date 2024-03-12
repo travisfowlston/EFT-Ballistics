@@ -46,9 +46,9 @@ const Profile = () => {
   return (
     <main>
       <div className="container mt-4 mb-4">
-        <h2 className="mb-4">
+        <h1 className="mb-4">
           {profileId ? `${profile.name}'s` : "Your"} saved ammo!
-        </h2>
+        </h1>
         <div>
           {savedItems.length > 0 ? (
             savedItems.map((item) => (
