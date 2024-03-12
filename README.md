@@ -13,6 +13,9 @@ This project is a ballistics calculator for the game Escape from Tarkov (EFT). I
 - Recoil effects
 - filter ammo types by weapon
 
+## Screenshot
+
+
 ## Usage
 
 Users will be able to create an account to save their favorite weapons and ammo types. Main webpage displays all ammo types and their respective statistics.
