@@ -57,7 +57,7 @@ const Home = () => {
   });
 
   const [addAmmo] = useMutation(ADD_AMMO);
-
+  console.log(Auth.getProfile().data._id);
   function saveToProfile(ammo) {
     const saveButton = document.getElementById(`save-${ammo.item.id}`);
 
@@ -69,7 +69,10 @@ const Home = () => {
       }
 
       addAmmo({
-        variables: { ammoId: ammo.item.id },
+        variables: {
+          ammo: ammo.item.id,
+          profileId: Auth.getProfile().data._id,
+        },
       });
 
       setSelectedAmmoIds((prevIds) => [...prevIds, ammo.item.id]);
@@ -77,7 +80,6 @@ const Home = () => {
   }
 
   function handleSubmit() {
-    // Handle the submission of selected ammo IDs
     console.log("Selected Ammo IDs:", selectedAmmoIds);
   }
 
