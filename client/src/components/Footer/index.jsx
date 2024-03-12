@@ -35,32 +35,23 @@ export default function Footer() {
 
   return (
     <footer>
-      <span>© 2024 EFT Ballistics
-    <div style={footerStyle}>
+      <span>
+        &copy; {new Date().getFullYear()} - EFT Ballistics
+        <div style={footerStyle}>
           <div className="flex space-x-6">
             <div className="list-inline-item">
               <a href="https://github.com/travisfowlston/EFT-Ballistics">
                 <FontAwesomeIcon
                   icon={faGithub}
                   size="2x"
-                  style={{ color: "#DBC59c" }}
+                  style={{ color: "#f8f9fa" }}
                   className="icon z-2"
                 />
               </a>
             </div>
-            <div className="list-inline-item">
-              <a href="https://www.linkedin.com/">
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  size="2x"
-                  style={{ color: "#DBC59c" }}
-                  className="icon z-2"
-                />
-              </a>
-            </div> 
           </div>
         </div>
-        </span>
+      </span>
     </footer>
   );
 }
