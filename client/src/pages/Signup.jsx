@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation } from "@apollo/client";
 import { ADD_PROFILE } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -57,9 +56,7 @@ const Signup = () => {
               </h1>
 
               <p className="accAlready">
-                <bold>
-                  Already have an account? <Link to="/login">Login</Link>
-                </bold>
+                Already have an account? <Link to="/login">Login</Link>
               </p>
               <form onSubmit={handleFormSubmit}>
                 <div className="form-floating">

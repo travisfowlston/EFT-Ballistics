@@ -42,8 +42,7 @@ const Login = () => {
               </h1>
               <p className="accAlready">
                 {" "}
-                <bold>Don't have an account?</bold>{" "}
-                <Link to="/signup">Sign up</Link>
+                Don't have an account? <Link to="/signup">Sign up</Link>
               </p>
               <form onSubmit={handleFormSubmit}>
                 <div className="form-floating">
