@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
 const Profile = () => {
@@ -15,21 +15,14 @@ const Profile = () => {
   );
 
   const profile = data?.me || data?.profile || {};
+console.log(profile);
+ 
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("savedItems") || "[]");
-    setSavedItems(items);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("savedItems", JSON.stringify(savedItems));
-  }, [savedItems]);
-
-  const deleteItem = (itemId) => {
-    setSavedItems((prevItems) =>
-      prevItems.filter((item) => item.item.id !== itemId)
-    );
-  };
+  // const deleteItem = (itemId) => {
+  //   setSavedItems((prevItems) =>
+  //     prevItems.filter((item) => item.item.id !== itemId)
+  //   );
+  // };
 
   if (loading) return <div>Loading...</div>;
   if (!profile?.name) {

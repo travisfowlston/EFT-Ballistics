@@ -14,6 +14,7 @@ export const QUERY_SINGLE_PROFILE = gql`
     profile(profileId: $profileId) {
       _id
       name
+      ammos
     }
   }
 `;
@@ -21,6 +22,7 @@ export const QUERY_SINGLE_PROFILE = gql`
 export const QUERY_ME = gql`
   query me {
     me {
+      ammos
       _id
       name
     }

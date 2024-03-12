@@ -17,25 +17,16 @@ const Header = () => {
             className="logo"
           />
         </RouterLink>
-
-        <div>
+        <div className="header-links">
           {Auth.loggedIn() ? (
             <>
-              <a href="/me" className="btn custom-btn me-2">
-                View My Profile
-              </a>
-              <button onClick={logout} className="btn custom-btn">
-                Logout
-              </button>
+              <RouterLink to="/me" className="btn custom-btn me-2">View My Profile</RouterLink>
+              <button onClick={logout} className="btn custom-btn">Logout</button>
             </>
           ) : (
             <>
-              <a href="/login" className="btn custom-btn me-2">
-                Login
-              </a>
-              <a href="/signup" className="btn custom-btn">
-                Signup
-              </a>
+              <RouterLink to="/login" className="btn custom-btn me-2">Login</RouterLink>
+              <RouterLink to="/signup" className="btn custom-btn">Signup</RouterLink>
             </>
           )}
         </div>
@@ -45,3 +36,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
