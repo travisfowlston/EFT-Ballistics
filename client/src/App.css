@@ -3,10 +3,11 @@
 
 :root {
   --background-color: #787565;
-  --second-bg-color: #DBC59c;
+  --second-bg-color: #dbc59c;
   --bs-dark-bg-subtle: #ced4da;
   --primary-grey: #757272;
   --primary-blue-grey: #566573;
+  --primary-white: #f8f9fa;
 }
 
 body {
@@ -53,10 +54,22 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: antiquewhite;
+  color: var(--primary-blue-grey);
   margin-bottom: 70px;
   padding-top: 0%;
   background-color: #212529;
+}
+.accAlready {
+  color: #dbc59c !important;
+}
+.signUpBtn {
+  background-color: #dbc59c !important;
+  color: #28241b !important;
+}
+.signUpBtn:hover {
+  box-shadow: 5px 3px 10px 2px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05) !important;
+  transition: transform 0.05s ease;
 }
 .form-signin {
   width: 100%;
@@ -73,33 +86,32 @@ header {
   background-image: url(./src/assets/oberin-ojm-escape-from-tarkov-wallpaper-3840x2160-d3hell.jpg);
   background-size: cover;
   background-position: center;
-  height: 200px; 
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 15px;
-  width: 100%; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  z-index: 1030; 
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
 }
 
 .custom-btn {
-  background-color: var(--second-bg-color); 
-  border: 1px solid var(--second-bg-color); 
-  color: #000; 
+  background-color: var(--second-bg-color);
 }
 
 .custom-btn:hover {
-  background-color: darken(#DBC59C, 10%);
-  border-color: darken(#DBC59C, 10%);
+  box-shadow: 5px 3px 10px 2px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05) !important;
+  transition: transform 0.05s ease;
 }
 
 /* Footer Section */
 footer {
   background-color: var(--primary-grey);
-  color: #dbc59c;
+  color: var(--primary-white);
   padding: 30px;
   padding-top: 20px;
   text-align: center;
@@ -116,5 +128,5 @@ span {
 .icon:hover {
   transform: scale(1.25);
   transition: transform 0.05s ease;
-  color: #28241b !important;
+  color: var(--second-bg-color) !important;
 }
