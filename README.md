@@ -21,7 +21,7 @@ EFT Ballistics is a comprehensive ballistics calculator crafted specifically for
 
 ## Usage
 
-Users will be able to create an account to save their favorite weapons and ammo types. Main webpage displays all ammo types and their respective statistics.
+To utilize this application, users can create an account to conveniently save their preferred weapons and ammunition types. Upon logging in, the main webpage showcases a comprehensive list of available ammo types along with their corresponding statistics, allowing users to easily access and analyze the data they need.
 
 ## Contributing
 
