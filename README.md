@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a ballistics calculator for the game Escape from Tarkov (EFT). It helps players calculate damage, armor penetration, fragmentation chance, bullet velocity, recoil effects, and accuracy of different ammunition's in the pc game Escape From Tarkov.
+EFT Ballistics is a comprehensive ballistics calculator crafted specifically for Escape from Tarkov (EFT) enthusiasts. Leveraging the Tarkov API, this application seamlessly fetches data to provide accurate insights into damage, armor penetration, fragmentation chance, bullet velocity, recoil effects, and accuracy for various ammunition types within the game. But that's not all – with its user-centric design, EFT Ballistics offers additional functionalities such as account creation and the ability to save favorite ammo types directly to your profile. Powered by a robust GraphQL and MongoDB backend, and featuring a sleek React.js frontend, this application ensures a seamless and immersive experience for players looking to dominate the battlefield in Escape from Tarkov.
 
 ## Features
 
