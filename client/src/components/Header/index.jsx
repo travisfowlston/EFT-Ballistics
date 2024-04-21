@@ -10,11 +10,11 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <nav className="navbar navbar-expand-lg bg-dark z-depth-4">
+    <header className="sticky-top">
+      <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container">
           <RouterLink to="/" className="navbar-brand">
-            EFT-BALLISTICS
+            EFT BALLISTICS
           </RouterLink>
           <button
             className="navbar-toggler"
