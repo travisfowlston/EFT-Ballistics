@@ -53,31 +53,26 @@ const Profile = () => {
     });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="container mt-5 mb-5 pt-5 pb-5 border border-3 border-white">
+        <h1 className="text-center">Loading...</h1>
+      </div>
+    );
   if (error)
     return (
-      <div className="container d-flex justify-content-center align-items-center mt-5 pt-5 pb-5 border border-3 border-danger">
+      <div className="container mt-5 mb-5 pt-5 pb-5 border border-3 border-danger">
         <div className="text-center text-white">
           <h1>How dare you...</h1>
           <h4>You need to be logged in to see this page!</h4>
         </div>
       </div>
     );
-  if (!data?.me && !data?.profile) {
-    return (
-      <div className="container d-flex justify-content-center align-items-center mt-5 pt-5 pb-5 border border-3 border-danger">
-        <div className="text-center text-white"></div>
-      </div>
-    );
-  }
 
   return (
     <main>
       <div className="container mt-4 mb-4">
-        <h1 className="mb-4">
-          {profileId ? `${data.profile?.name || "This profile"}'s` : "Your"}{" "}
-          saved ammo!
-        </h1>
+        <h1 className="mb-4">My saved ammo!</h1>
         {savedAmmos.length > 0 ? (
           savedAmmos.map((ammo, index) => (
             <div key={index} className="mb-2">

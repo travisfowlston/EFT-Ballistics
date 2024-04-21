@@ -117,21 +117,22 @@ nav ul li {
 
 /* Footer Section */
 footer {
-  background-color: var(--primary-grey);
+  background-image: url("./assets/background.png");
+  background-position: center;
+  background-attachment: fixed;
   color: var(--primary-white);
-  padding: 30px;
-  padding-top: 20px;
-  text-align: center;
-  display: inline-flex;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  box-shadow: -2px -2px 5px black;
+  padding: 5px;
 }
 
-span {
-  position: fixed;
-  padding-bottom: 1rem;
+footer ul li {
+  letter-spacing: 0.0375rem;
+  margin-right: 4rem;
+  margin-left: 4rem;
+}
+
+.icon {
+  font-size: 2.3rem;
 }
 
 .icon:hover {

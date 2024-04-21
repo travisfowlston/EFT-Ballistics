@@ -94,7 +94,7 @@ const Home = () => {
             >
               {caliber}
             </button>
-            <div className="collapse show" id={`caliber-${caliber}`}>
+            <div className="collapse show table-responsive" id={`caliber-${caliber}`}>
               <table className="table table-dark table-striped-columns">
                 <thead>
                   <tr>
