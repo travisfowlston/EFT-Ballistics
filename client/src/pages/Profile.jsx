@@ -71,7 +71,7 @@ const Profile = () => {
 
   return (
     <main>
-      <div className="container mt-4 mb-4">
+      <div className="container savedAmmo mt-4 mb-4">
         <h1 className="mb-4">My saved ammo!</h1>
         {savedAmmos.length > 0 ? (
           savedAmmos.map((ammo, index) => (

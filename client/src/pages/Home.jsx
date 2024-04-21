@@ -81,7 +81,7 @@ const Home = () => {
 
   return (
     <main>
-      <div className="container mt-4 mb-4">
+      <div className="container ammoTables mt-4 mb-4">
         {Object.keys(groupedAmmo).map((caliber) => (
           <div key={caliber}>
             <button
@@ -94,7 +94,10 @@ const Home = () => {
             >
               {caliber}
             </button>
-            <div className="collapse show table-responsive" id={`caliber-${caliber}`}>
+            <div
+              className="collapse show table-responsive"
+              id={`caliber-${caliber}`}
+            >
               <table className="table table-dark table-striped-columns">
                 <thead>
                   <tr>
