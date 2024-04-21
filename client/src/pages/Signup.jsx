@@ -41,7 +41,7 @@ const Signup = () => {
   return (
     <main className="Container mt-5 mx-5 center_content">
       <section className="d-flex justify-content-center">
-        <div className="center_content border mt-5 p-5 signup">
+        <div className="center_content border mt-1 p-5 signup">
           {data ? (
             <div className="form-signin">
               <p>
@@ -50,11 +50,8 @@ const Signup = () => {
               </p>
             </div>
           ) : (
-            <div className="form-signin">
-              <h1 className="h3 mb-3 fw-normal signup text-white">
-                Please sign up
-              </h1>
-
+            <div className="form-signin text-center">
+              <h1 className="h3 mb-3 fw-normal text-white">Please sign up</h1>
               <p className="accAlready">
                 Already have an account? <Link to="/login">Login</Link>
               </p>

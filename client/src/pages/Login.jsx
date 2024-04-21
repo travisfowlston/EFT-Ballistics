@@ -28,18 +28,21 @@ const Login = () => {
 
   return (
     <main className="Container mt-5 mx-5 center_content">
+      {error && (
+        <div className="error-container d-flex justify-content-center">
+          <h6 className="alert alert-danger">{error.message}</h6>
+        </div>
+      )}
       <section className="d-flex justify-content-center">
-        <div className="center_content border mt-5 p-5 signup">
+        <div className="center_content border mt-1 p-5 signup">
           {data ? (
             <div className="form-signin">
               Success! You may now head{" "}
               <Link to="/">back to the homepage.</Link>
             </div>
           ) : (
-            <div className="form-signin">
-              <h1 className="h3 mb-3 fw-normal text-white signup">
-                Please log in
-              </h1>
+            <div className="form-signin text-center">
+              <h1 className="h3 mb-3 fw-normal text-white">Please log in</h1>
               <p className="accAlready">
                 {" "}
                 Don't have an account? <Link to="/signup">Sign up</Link>
@@ -91,9 +94,6 @@ const Login = () => {
                 </button>
               </form>
             </div>
-          )}
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
           )}
         </div>
       </section>
